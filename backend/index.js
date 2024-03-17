@@ -6,13 +6,14 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors(
-    {
-        origin:"*",
-        methods:["POST","GET"],
-        credentials:true,
-    }
-));
+// Middleware to set CORS headers
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://mern-auth-frontend-olive.vercel.app");
+    res.header("Access-Control-Allow-Methods", "POST, GET");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
+
 app.use(express.json());
 
 // MongoDB Connection
