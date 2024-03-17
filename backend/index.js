@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors(
     {
-        origin:"https://mern-auth-frontend-olive.vercel.app",
+        origin:"*",
         methods:["POST","GET"],
         credentials:true,
     }
