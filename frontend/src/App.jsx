@@ -7,10 +7,10 @@ function App() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+axios.defaults.withCredentials=true;
   const handleRegister = async () => {
       try {
-          await axios.post('http://localhost:5000/api/auth/register', { username, password });
+          await axios.post('https://mern-auth-api-pink.vercel.app/api/auth/register', { username, password });
           console.log('Registered successfully');
       } catch (error) {
           console.error('Registration failed:', error.response.data.message);
