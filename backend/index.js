@@ -20,6 +20,10 @@ connection.once('open', () => {
 const authRouter = require('./routes/user');
 app.use( authRouter);
 
+
+app.get('/',(req,res)=>{
+    res.json("Hello")
+})
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
