@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 // Middleware to set CORS headers
 
-
+app.use(cors())
 app.use(express.json());
 
 // MongoDB Connection
