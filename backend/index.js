@@ -16,7 +16,7 @@ app.use(cors(
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://127.0.0.1:27017/mern_auth');
+mongoose.connect('mongodb+srv://zeeshanzia1270:1234@cluster0.tquxb7h.mongodb.net/');
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
