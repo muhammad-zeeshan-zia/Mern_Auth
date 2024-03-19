@@ -8,15 +8,26 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 // Middleware to set CORS headers
 
-app.options("*",cors(
-    {
-    origin:function(origin,callback){
-        return callback(null,true);
-    },
-    optionsSuccessStatus:200,
-    credentials:true,
-    }
-))
+// app.options("*",cors(
+//     {
+//     origin:function(origin,callback){
+//         return callback(null,true);
+//     },
+//     optionsSuccessStatus:200,
+//     credentials:true,
+//     }
+// ))
+
+
+const corsOptions = {
+    origin: 'https://mern-auth-frontend-olive.vercel.app',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+  
+  // Enable CORS with custom options
+  app.use(cors(corsOptions));
+  
 app.use(express.json());
 
 // MongoDB Connection
