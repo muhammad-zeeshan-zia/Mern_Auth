@@ -20,12 +20,10 @@ app.use(cors(
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb+srv://zeeshanzia1270:1234@cluster0.tquxb7h.mongodb.net/');
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-});
-
+mongoose.connect("mongodb+srv://zeeshanzia1270:1234@cluster0.drjympm.mongodb.net/")
+.then(console.log("Databse Connected")).catch((err)=>{
+    console.log(err);
+})
 // Routes
 const authRouter = require('./routes/user');
 app.use( authRouter);

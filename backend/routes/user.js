@@ -1,50 +1,37 @@
 const express =require('express');
 const app =express.Router();
 const User =require("../models/user")
-app.post('/api/auth/register', async (req, res) => {
-
-
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
-
-//---- other code
-
- //Preflight CORS handler
-    if(req.method === 'OPTIONS') {
-        return res.status(200).json(({
-            body: "OK"
-        }))
-    }
-
+app.post('/api/auth/register',  async (req, res) => {
     try {
-        const { username, password } = req.body;
-        const existingUser = await User.findOne({ username });
-
-        if (existingUser) {
-            return res.status(400).json({ message: "User already exists" });
-        }
-
-        const newUser = new User({ username, password });
-        await newUser.save();
-
-        res.status(201).json({ message: "User registered successfully" });
+  
+  
+      const { username, email, password,profilePic } = req.body;
+  
+      // Check if the username or email already exists in the database
+      const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+      if (existingUser) {
+        return res.status(400).json({ message: 'Username or email already exists' });
+      }
+  
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const newUser = new User({
+        username,
+        email,
+        password: hashedPassword,
+        profilePic:profilePic
+      });
+  
+      const savedUser = await newUser.save();
+      res.status(201).json("User Registered");
     } catch (error) {
-        res.status(500).json({ error: error.message });
+      console.log(error);
+      res.status(500).json({ error: error.message });
     }
-});
-
+    //Preflight CORS handler
+  });
+  
 app.post('/api/auth/login', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
-      if(req.method === 'OPTIONS') {
-        return res.status(200).json(({
-            body: "OK"
-        }))
-    }
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
