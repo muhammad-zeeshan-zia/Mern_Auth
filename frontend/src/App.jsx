@@ -37,7 +37,7 @@ return (
     <>
    
     <Routes>
-      <Route path="/register" element={<Register/>} />
+      <Route path="/" element={<Register/>} />
   
     </Routes>
     </>
