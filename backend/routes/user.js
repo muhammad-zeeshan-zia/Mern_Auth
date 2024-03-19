@@ -1,7 +1,8 @@
 const express =require('express');
-const app =express.Router();
+const router =express.Router();
 const User =require("../models/user")
-app.post('/api/auth/register',  async (req, res) => {
+const bcrypt = require('bcrypt');
+router.post('/api/auth/register',  async (req, res) => {
     try {
   
   
@@ -31,7 +32,7 @@ app.post('/api/auth/register',  async (req, res) => {
     //Preflight CORS handler
   });
   
-app.post('/api/auth/login', async (req, res) => {
+router.post('/api/auth/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
@@ -46,4 +47,4 @@ app.post('/api/auth/login', async (req, res) => {
     }
 });
 
-module.exports= app
+module.exports= router;
