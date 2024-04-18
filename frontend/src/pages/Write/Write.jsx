@@ -1,5 +1,5 @@
 import "./Write.css";
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useLogin } from "../Login/LoginContext";
 import axios from "axios";
 import data from './category.json';
