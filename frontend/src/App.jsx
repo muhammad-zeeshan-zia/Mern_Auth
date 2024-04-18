@@ -1,4 +1,4 @@
-import React from 'react';
+
 import ReactDOM from 'react-dom';
 import { Routes,Route } from 'react-router-dom';
 import Register from './pages/Register/Register';
