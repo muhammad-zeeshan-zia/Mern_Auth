@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import axios from 'axios';
-
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Routes,Route } from 'react-router-dom';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login'
