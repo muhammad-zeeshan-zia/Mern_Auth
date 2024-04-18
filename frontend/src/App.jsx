@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { Routes,Route } from 'react-router-dom';
 import Register from './pages/Register/Register';
+import Login from './pages/Login/Login'
 //import Topbar from './Components/Topbar/Topbar'
 // functin App() {
 //   const [count, setCount] = useState(0)
@@ -38,6 +39,7 @@ return (
    
     <Routes>
       <Route path="/" element={<Register/>} />
+      <Route path="/login" element={<Login/>} />
   
     </Routes>
     </>

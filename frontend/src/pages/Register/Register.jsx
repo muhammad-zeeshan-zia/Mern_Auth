@@ -86,7 +86,7 @@ export default function Register() {
         try{
 
           const res = await axios.post(
-            'https://mern-auth-api2.vercel.app/api/auth/register',
+            'http://localhost:5000/api/auth/register',
             {
                 username,
                 email,

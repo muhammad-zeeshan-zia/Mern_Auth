@@ -19,14 +19,10 @@ const PORT = process.env.PORT || 5000;
 // ))
 
 
-const corsOptions = {
-    origin: 'https://mern-auth-frontend-olive.vercel.app',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  };
+
   
   // Enable CORS with custom options
-  app.use(cors(corsOptions));
+  app.use(cors());
   
 app.use(express.json());
 
